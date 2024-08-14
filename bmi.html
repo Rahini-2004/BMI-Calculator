@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+        background-color:lightskyblue;
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <h1> BMI CALCULATOR</h1>
+    <form>
+        Height:<input type="number" id="height" required>
+        <td><select type="text" name="Hgt" id="Hgt" required>
+            <option value="inches">inches</option>
+            <option value="cm">cm</option>
+          </select></td><br><br>
+        Weight:<input type="number" id="weight" required>
+        <td><select type="text" name="Wght" id="Wght" required>
+            <option value="pounds">pounds</option>
+            <option value="kg">kg</option>
+          </select></td><br><br>
+        <button type="button"  onclick="Result()">Calculate</button><br><br>
+        <label for="result">Result</label>
+        <input type="Number" name="result" id="result"><br><br>
+        Description:<input type="text" name="Description" id="Description">
+    </form>
+</center>
+    <script>
+        function Result(){
+            let height = Number(document.getElementById('height').value);
+            let weight = Number(document.getElementById('weight').value);
+            let Hgt=document.getElementById("Hgt").value;
+            let Wght=document.getElementById("Wght").value;
+            if(Wght=="kg" && Hgt=="cm"){
+            const value=weight/((height/100)*(height/100));
+            document.getElementById('result').innerText = `Your BMI is ${value.toFixed(2)}`;
+            }
+            else if(Wght=="pounds" && Hgt=="inches")
+            {
+                value= (weight/(height*height))*703;
+                document.getElementById('result').innerText = `Your BMI is ${value.toFixed(2)}`;
+            }
+            else if(Wght=="kg" && Hgt=="inches")
+            {
+                let a=0.0254*height;
+                value=weight/ (a*a);
+                document.getElementById('result').innerText = `Your BMI is ${value.toFixed(2)}`;
+            }
+            else{
+                value=(0.453592*weight)/((height/100)*(height/100));
+                document.getElementById('result').innerText = `Your BMI is ${value.toFixed(2)}`;
+            }
+        if(value<18.5)
+        {
+            result="Weight";
+        }
+        else if(value>=18.5 && value<=24.9)
+        {
+            result="Normal";
+        }
+        else if(value>=25 && value<=29.9)
+        {
+            result="Over weight";
+        }
+        else
+        {
+            result="Obesity";
+        }
+        document.getElementById("result").value=value;
+        document.getElementById("Description").value=result;
+        } 
+    </script>
+</body>
+</html>                                                                                                                                    
